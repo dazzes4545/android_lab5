@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Scaffold
@@ -35,11 +36,113 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
+            MainScreen()
         }
     }
 }
 
+@Composable
+fun MainScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Header()
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            ColorBoxesRow()
+
+            Spacer(modifier = Modifier.height(48.dp))
+
+            CombineBlock()
+        }
+    }
+}
+
+@Composable
+fun Header() {
+    Column(
+        modifier = Modifier.fillMaxWidth().padding(top = 100.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Пример Compose-приложения",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = "Row, Column, Size, ARGB",
+            fontSize = 18.sp
+        )
+    }
+}
+
+@Composable
+fun ColorBoxesRow() {
+    Row(
+        horizontalArrangement = Arrangement.Center,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Box(
+            modifier = Modifier
+                .size(80.dp)
+                .background(Color(0xFFFF0000))
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Box(
+            modifier = Modifier
+                .size(80.dp)
+                .background(Color(0xFF00FF00))
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Box(
+            modifier = Modifier
+                .size(80.dp)
+                .background(Color(0x800000FF))
+        )
+    }
+}
+
+@Composable
+fun CombineBlock() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color(0xFFE0E0E0))
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("Левая колонка", fontWeight = FontWeight.Bold)
+                Text("Текст 1")
+            }
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Text("Правая колонка", fontWeight = FontWeight.Bold)
+                Text("Текст 2")
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+
+    }
+}
 
 
 
